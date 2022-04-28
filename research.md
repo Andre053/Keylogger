@@ -37,3 +37,23 @@ Handling an IRQ
 3. Device is informed that its request has been recognized and the device deactivates the request signal
 4. The requested action is performed
 5. An interrupt is enabled and the interrupted program is resumed
+
+
+#### Event Support
+
+To add device support we must handle events through the event interface. There are blocking and nonblocking reads. You always get a whole number of input events on a read.
+
+Input event layout:
+    struct input_event {
+        struct timeval time;
+        unsigned short type;
+        unsigned short code;
+        unsigned int value;
+    }
+
+- 'time': timestamp of when the event happened
+    - Types: EV_REL for relative moment, EV_KEY for a keypress or release, more types are defined at include/uapi/linux/input-event-codes.h
+- 'code': the event code
+    - Types: REL_X, KEY_BACKSPACE, complete list in include/uapi/linux/input-event-codes.h
+- 'value': the value the event carries
+    - Types: either relative change for EV_REL, absolute new value for EV_ABS (joysticks), or 0 for EV_KEY for release, 1 for keypress, and 2 for autorepeat
