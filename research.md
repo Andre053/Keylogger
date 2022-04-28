@@ -62,3 +62,26 @@ Input event layout:
     - Types: REL_X, KEY_BACKSPACE, complete list in include/uapi/linux/input-event-codes.h
 - 'value': the value the event carries
     - Types: either relative change for EV_REL, absolute new value for EV_ABS (joysticks), or 0 for EV_KEY for release, 1 for keypress, and 2 for autorepeat
+
+#### Common Defense
+
+- Key encryption software
+    - Conceal the keystrokes on press
+- Anti malware
+    - Scans files that enter the computer
+- Detection
+    - Task manager
+    - Programs and features
+    - Full malware scan
+
+#### Program Set Up
+
+# Need
+1. Access the event file and read the events
+2. Save the results of the events within a text file
+3. Hide the text files at a hidden location or email files
+4. Avoid common defensive measures
+
+# Can Add
+- Screenshot on mouse click
+- Graphical user interface (using Qt)
