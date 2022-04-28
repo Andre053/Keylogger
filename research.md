@@ -12,6 +12,10 @@
 
 In Linux, all input devices are located within the /dev/input directory. Each device is configured to have event handlers that are present within this library. To see which events belong to which device, analyze the by-id or proc/bus/input/devices file.
 
+#### Computer Bus
+
+Common pathway through which information is sent from one component to another. The most important busses are the system bus and the I/O or expansion bus.
+
 #### The keyboard
 
 /dev/input/
@@ -44,15 +48,16 @@ Handling an IRQ
 To add device support we must handle events through the event interface. There are blocking and nonblocking reads. You always get a whole number of input events on a read.
 
 Input event layout:
-    struct input_event {
-        struct timeval time;
-        unsigned short type;
-        unsigned short code;
-        unsigned int value;
-    }
+    struct input_event {        // 24 bytes per package
+        struct timeval time;    // 16 bytes
+        unsigned short type;    // 2 bytes
+        unsigned short code;    // 2 bytes
+        unsigned int value;     // 4 bytes
+    }                           
 
 - 'time': timestamp of when the event happened
     - Types: EV_REL for relative moment, EV_KEY for a keypress or release, more types are defined at include/uapi/linux/input-event-codes.h
+    - Contains the system time
 - 'code': the event code
     - Types: REL_X, KEY_BACKSPACE, complete list in include/uapi/linux/input-event-codes.h
 - 'value': the value the event carries
