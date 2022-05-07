@@ -85,3 +85,6 @@ Input event layout:
 # Can Add
 - Screenshot on mouse click
 - Graphical user interface (using Qt)
+#### I/O with Files
+
+Three classes are provided to perform output and input of charactors to and from files: ofstream (write), ifstream (read), and fstream (read and write). These classes are derived directly or indirectly from the classes istream and ostream.
