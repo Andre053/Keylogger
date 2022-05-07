@@ -7,6 +7,8 @@
     - https://www.kernel.org/doc/Documentation/input/input.txt
 - About /dev/input
     - https://thehackerdiary.wordpress.com/2017/04/21/exploring-devinput-1/
+- About blocking/non-blocking I/O
+    - https://www.linuxtoday.com/blog/blocking-and-non-blocking-i-0/
 
 #### Input Devices 
 
@@ -63,6 +65,12 @@ Input event layout:
 - 'value': the value the event carries
     - Types: either relative change for EV_REL, absolute new value for EV_ABS (joysticks), or 0 for EV_KEY for release, 1 for keypress, and 2 for autorepeat
 
+#### Blocking/Non-blocking Reads
+
+- Blocking: Read will wait until there is data available and then returns from the function call
+- Non-blocking: Read will always return immediately, but it might not return any data
+
+
 #### Common Defense
 
 - Key encryption software
@@ -85,6 +93,7 @@ Input event layout:
 # Can Add
 - Screenshot on mouse click
 - Graphical user interface (using Qt)
+
 #### I/O with Files
 
 Three classes are provided to perform output and input of charactors to and from files: ofstream (write), ifstream (read), and fstream (read and write). These classes are derived directly or indirectly from the classes istream and ostream.
