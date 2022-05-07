@@ -37,3 +37,8 @@ Handling an IRQ
 3. Device is informed that its request has been recognized and the device deactivates the request signal
 4. The requested action is performed
 5. An interrupt is enabled and the interrupted program is resumed
+
+
+#### I/O with Files
+
+Three classes are provided to perform output and input of charactors to and from files: ofstream (write), ifstream (read), and fstream (read and write). These classes are derived directly or indirectly from the classes istream and ostream.
