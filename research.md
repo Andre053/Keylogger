@@ -97,3 +97,7 @@ Input event layout:
 #### I/O with Files
 
 Three classes are provided to perform output and input of charactors to and from files: ofstream (write), ifstream (read), and fstream (read and write). These classes are derived directly or indirectly from the classes istream and ostream.
+
+#### Poll function
+
+To read the device file we must wait until it is ready to be read, at which point the most recent entries will be read.
